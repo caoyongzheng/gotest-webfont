@@ -1,0 +1,28 @@
+{
+  "parser": "babel-eslint",
+  "extends": "airbnb",
+  "globals": {
+    "require": true,
+    "$": true
+  },
+  "parserOptions": {
+    "ecmaVersion": 7,
+    "sourceType": 'module',
+    "ecmaFeatures": {
+      "jsx": true,
+      "experimentalObjectRestSpread": true
+    }
+  },
+  "env": {
+    "es6": true,
+    "node": true,
+    "mocha": true
+  },
+  "rules": {
+    "semi": 0,
+    "global-require": 0,
+    "no-param-reassign": 0,
+    "import/no-unresolved": 0,
+    "react/prop-types": [2, { ignore: ["children", "router", "style", "className"] }]
+  }
+}
