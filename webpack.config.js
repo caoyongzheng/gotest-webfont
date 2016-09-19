@@ -35,6 +35,10 @@ var config = {
             presets: ['es2015', 'stage-0', 'react']
         }
     },{
+        test: /\.worker\.js$/,
+        exclude:path.resolve(__dirname, 'node_modules/'),
+        loader: 'worker-loader',
+    },{
         test: /\.css$/,
         inculde:path.resolve(__dirname, 'node_modules/'),
         loader: 'style!css!postcss-loader'
@@ -66,7 +70,7 @@ var config = {
   devServer: {
     proxy: [
       {
-        path: ['/api/','/resources/'],
+        path: ['/api/','/resources/', '/favicon.ico'],
         target: 'http://127.0.0.1:3000',
       },
       {

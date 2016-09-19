@@ -2,8 +2,6 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import { Router, browserHistory } from 'react-router'
 import { storeSet, StoreSetProvider } from 'react-store-set'
-import AuthStore from './stores/AuthStore'
-import RouterStore from './stores/RouterStore'
 import 'Notify'
 import injectTapEventPlugin from 'react-tap-event-plugin'
 injectTapEventPlugin()
@@ -11,6 +9,9 @@ import R from 'R'
 
 import App from './App'
 import './app.scss'
+import AuthStore from './stores/AuthStore'
+import RouterStore from './stores/RouterStore'
+import SignModalStore from './stores/SignModalStore'
 
 const AppRoute = {
   path: '/app',
@@ -43,4 +44,14 @@ AuthStore.actions.login(() => {
     </StoreSetProvider>,
     divElem
   )
+})
+
+storeSet.addStore('SignModal', SignModalStore)
+// 设置全局handler请求
+$.ajaxSetup({
+  complete(xhr) {
+    if (xhr.status === '404') {
+      SignModalStore.actions.onSignIn()
+    }
+  },
 })

@@ -1,11 +1,12 @@
 import React from 'react'
+import TickWorker from '../utils/tick.worker.js'
 
 class Timer extends React.Component {
   state = {
     time: 0,
   }
   componentWillUnmount() {
-    this.clear()
+    this.stop()
   }
   format = () => {
     const { time } = this.state
@@ -18,14 +19,14 @@ class Timer extends React.Component {
     return `${hourShow} : ${minsShow} : ${secondsShow}`
   }
   start = () => {
-    this.inter = setInterval(() => {
+    this.tickWorker = new TickWorker()
+    this.tickWorker.onmessage = (e) => {
       this.setState({
-        time: this.state.time + 1,
+        time: e.data,
       })
-    }, 1000)
+    }
   }
-  stop = () => clearInterval(this.inter)
-  clear = () => this.setState({ time: 0 })
+  stop = () => this.tickWorker.terminate()
   render() {
     return (
       <span>{this.format()}</span>

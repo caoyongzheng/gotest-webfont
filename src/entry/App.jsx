@@ -3,13 +3,11 @@ import { storeSet, Connector, DispatchListener } from 'react-store-set'
 import { withRouter } from 'react-router'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import Header from './components/Header'
-import SignModalStore from './stores/SignModalStore'
 import LeftNavStore from './stores/LeftNavStore'
 import SignModal from './components/SignModal'
 import LeftNav from './components/LeftNav'
 import R from 'R'
 
-storeSet.addStore('SignModal', SignModalStore)
 storeSet.addStore('LeftNav', LeftNavStore)
 
 class App extends React.Component {

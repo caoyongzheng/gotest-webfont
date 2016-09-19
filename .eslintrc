@@ -3,7 +3,8 @@
   "extends": "airbnb",
   "globals": {
     "require": true,
-    "$": true
+    "$": true,
+    "_": true,
   },
   "parserOptions": {
     "ecmaVersion": 7,
