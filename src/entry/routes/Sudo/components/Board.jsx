@@ -20,11 +20,12 @@ class Board extends React.Component {
     super(props)
     this.state = {
       puzzle: _.times(81, () => (null)),
-      stackCells: _.times(9, () => _.times(9, () => ({ position: -1 }))),
+      stackCells: _.times(9, () => _.times(9, () => ({ position: -1, step: 0 }))),
       active: -1,
       edit: -1,
       errors: 0,
     }
+    this.step = 10
   }
   componentDidMount() {
     this.init()
@@ -53,7 +54,7 @@ class Board extends React.Component {
   init = () => {
     this.state = {
       puzzle: _.times(81, () => (null)),
-      stackCells: _.times(9, () => _.times(9, () => ({ position: -1 }))),
+      stackCells: _.times(9, () => _.times(9, () => ({ position: -1, step: 0 }))),
       active: -1,
       edit: -1,
       errors: 0,
@@ -83,6 +84,8 @@ class Board extends React.Component {
     const c = _.find(stackCells[number], (cell) => cell.position === -1)
     if (c) {
       c.position = position
+      c.step = this.step
+      this.step++
     }
     this.setState({ puzzle, stackCells })
     const isError = !sudoku.solvepuzzle(puzzle)

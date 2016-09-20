@@ -43,7 +43,7 @@ class Stack extends React.Component {
           _.map(stackCells, (cells, number) => {
             let index = -1
             return _.map(cells, (c, i) => {
-              const { position, heightLight } = c
+              const { position, heightLight, step } = c
               if (position === -1) {
                 index++
               }
@@ -63,7 +63,7 @@ class Stack extends React.Component {
                           top: `${y}px`,
                           ...((active === number && position > -1) ? styles.active : {}),
                           ...(heightLight ? { backgroundColor: 'rgb(171, 132, 0)' } : {}),
-                          zIndex: 9 - i,
+                          zIndex: Math.max(9 - i, step),
                         }}
                       />
                     )
