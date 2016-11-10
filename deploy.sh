@@ -9,4 +9,4 @@ echo 'build assets'
 npm run prod
 
 echo 'upload assets'
-scp -r $Webfont/assets/  $ServerUrl:/gotest/assets/
+scp -r $Webfont/assets  $ServerUrl:/gotest/assets

@@ -37,11 +37,11 @@ var config = {
     },{
         test: /\.worker\.js$/,
         exclude:path.resolve(__dirname, 'node_modules/'),
-        loader: 'worker-loader',
+        loader: 'worker',
     },{
         test: /\.css$/,
         inculde:path.resolve(__dirname, 'node_modules/'),
-        loader: 'style!css!postcss-loader'
+        loader: 'style!css!postcss'
     }, {
         test: /\.scss$/,
         exclude:path.resolve(__dirname, 'node_modules/'),
