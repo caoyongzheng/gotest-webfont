@@ -6,7 +6,6 @@ import 'Notify'
 import injectTapEventPlugin from 'react-tap-event-plugin'
 injectTapEventPlugin()
 import R from 'R'
-
 import App from './App'
 import './app.scss'
 import AuthStore from './stores/AuthStore'

@@ -22,16 +22,15 @@ function initPlugins(config) {
       filename: 'template/app.html',
       template: 'src/template/template.html',
     }),
+    new webpack.DefinePlugin({
+        "process.env": {
+            NODE_ENV: production ? JSON.stringify("production") : JSON.stringify("development"),
+        }
+    }),
   ]
 
   if (production) {
       config.plugins = config.plugins.concat([
-          new webpack.DefinePlugin({
-              "process.env": {
-                  NODE_ENV: JSON.stringify("production")
-              }
-          }),
-
           // This plugin looks for similar chunks and files
           // and merges them for better caching by the user
           new webpack.optimize.DedupePlugin(),

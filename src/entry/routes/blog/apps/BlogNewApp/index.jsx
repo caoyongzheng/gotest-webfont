@@ -1,7 +1,9 @@
 import React from 'react'
-import { storeSet } from 'react-store-set'
-import BlogNewForm from './components/BlogNewForm'
-import BlogFormStore from '../../stores/BlogFormStore'
+import BlogEditForm from '../../components/BlogEditForm'
+import notify from 'notify'
+import R from 'R'
+import fetch2 from 'fetch2'
+import C from 'C'
 
 const styles = {
   stage: {
@@ -12,18 +14,29 @@ const styles = {
 }
 
 class BlogNewApp extends React.Component {
-  constructor(props) {
-    super(props)
-    storeSet.addStore('BlogForm', BlogFormStore)
-  }
-  componentWillUnmount() {
-    storeSet.delStore('BlogForm')
+  onSubmit = (postData) => {
+    fetch2(`${C.Host}/api/blog`, {
+      method: 'POST',
+      body: JSON.stringify(postData),
+    })
+    .then((response) => response.json())
+    .then((result) => {
+      if (result.success) {
+        notify.success('添加博文成功')
+        R.BlogView.go({ blogId: result.data })
+      } else {
+        notify.error(result.desc)
+      }
+    })
+    .catch((error) => {
+      notify.error(error.message)
+    })
   }
   render() {
     return (
       <div style={styles.stage}>
         <div style={{ marginTop: '20px' }}>
-          <BlogNewForm />
+          <BlogEditForm onSubmit={this.onSubmit} />
         </div>
       </div>
     )

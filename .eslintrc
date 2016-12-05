@@ -24,6 +24,8 @@
     "global-require": 0,
     "no-param-reassign": 0,
     "import/no-unresolved": 0,
-    "react/prop-types": [2, { ignore: ["children", "router", "style", "className"] }]
+    "react/prop-types": [2, { ignore: ["children", "router", "style", "className"] }],
+    "react/prefer-stateless-function": 0,
+    "max-len": 0
   }
 }

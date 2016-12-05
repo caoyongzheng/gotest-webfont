@@ -63,7 +63,12 @@ var config = {
   resolve: {
     root: [__dirname],
     extensions: ['', '.js', '.jsx'],
-    loaderPostfixes:['-loader','']
+    loaderPostfixes:['-loader',''],
+    alias: {
+      notify: path.resolve('./src/components/notify.js'),
+      C: path.resolve('./src/entry/constants.js'),
+      fetch2: path.resolve('./src/entry/fetch2.js'),
+    }
   },
   debug: !production,
   devtool: production ? false : 'eval',

@@ -1,0 +1,46 @@
+.notify-target {
+  z-index: 99999;
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, 0);
+  min-width: 400px;
+  max-width: 80%;
+  height: 45px;
+  padding: 0 15px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  line-height: 45px;
+  border-radius: 2px;
+  animation-name: notify-show;
+  animation-duration: 300ms;
+  animation-timing-function: ease-out;
+  color: black;
+}
+
+.notify-target.hide {
+  height: 0;
+  transition: height 500ms ease-in-out;
+}
+
+.notify-target.success {
+  background-color: #E8F5E9;
+}
+.notify-target.info {
+  background-color: #E3F2FD;
+}
+.notify-target.warn {
+  background-color: #FFF3E0;
+}
+.notify-target.error {
+  background-color: #FFCDD2;
+}
+
+@keyframes notify-show {
+  0% {
+    transform: translate(-50%,-8px);
+  }
+  100% {
+    transform: translate(-50%, 0);
+  }
+}
